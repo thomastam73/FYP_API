@@ -1,0 +1,48 @@
+{
+  "name": "shape_302cem_covid-19_app_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billjjjj/shape_302cem_covid-19_app_api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/billjjjj/shape_302cem_covid-19_app_api/issues"
+  },
+  "homepage": "https://github.com/billjjjj/shape_302cem_covid-19_app_api#readme",
+  "engines": {
+    "node": "12.x"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dayjs": "^1.9.8",
+    "express": "^4.17.1",
+    "express-validator": "^6.8.1",
+    "got": "^11.8.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8",
+    "mongoose-unique-validator": "^2.0.3",
+    "node-mocks-http": "^1.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "supertest": "^6.0.1"
+  }
+}

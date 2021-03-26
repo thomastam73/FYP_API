@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Mock User Name1",
+    "email": "mock1@gmail.com",
+    "password": "123456",
+    "status": 1
+  },
+  {
+    "name": "Mock User Name2",
+    "email": "mock2@gmail.com",
+    "password": "123456789",
+    "status": 1
+  }
+]

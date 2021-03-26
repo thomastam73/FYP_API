@@ -4,7 +4,8 @@ mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 mongoose.set("useFindAndModify", false);
 mongoose.connect(
-  "mongodb+srv://manmanbbg:19990703@deafanddumbpeople.dw5hm.mongodb.net/deafanddumbpeopleapptest",
+  "mongodb+srv://manmanbbg:19990703@deafanddumbpeople.dw5hm.mongodb.net/DeafAndDumbPeopleAppTest?retryWrites=true&w=majority",
+
   { useNewUrlParser: true }
 );
 

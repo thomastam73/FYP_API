@@ -1,5 +1,5 @@
-require('./database/mongodb.connect');
-const app = require('./app');
+require("./database/mongodb.connect");
+const app = require("./app");
 
 // Server
 const PORT = process.env.PORT || 80;

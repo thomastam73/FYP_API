@@ -1,34 +1,34 @@
-const request = require('supertest');
-const dayjs = require('dayjs');
-const mongoose = require('../../database/test.mongodb.connect');
-const app = require('../../app');
-const CultureModel = require('../../models/culture.model');
+const request = require("supertest");
+const dayjs = require("dayjs");
+const mongoose = require("../../database/test.mongodb.connect");
+const app = require("../../app");
+const CultureModel = require("../../models/culture.model");
 // mock data
-const newUser = require('../mock-data/user/new-user.json');
-const newCulture = require('../mock-data/culture/new-culture.json');
-const allCulture = require('../mock-data/culture/all-culture.json');
+const newUser = require("../mock-data/user/new-user.json");
+const newCulture = require("../mock-data/culture/new-culture.json");
+const allCulture = require("../mock-data/culture/all-culture.json");
 // testing detail
-const endpointUrl = '/cultures/';
-const nonExistingCultureId = '5fe313b9c8acc928ceaee2ba';
+const endpointUrl = "/cultures/";
+const nonExistingCultureId = "5fe313b9c8acc928ceaee2ba";
 const testData = {
-  name: 'Never call them Deaf and Dumb',
-  description: 'asd',
-  countrySource: 'Hong Kong',
-  reportDate: '2021-03-02T00:00:00.000Z',
+  name: "Never call them Deaf and Dumb",
+  description: "asd",
+  countrySource: "Hong Kong",
+  reportDate: "2021-03-02T00:00:00.000Z",
 };
 
-dayjs.locale('zh-hk');
+dayjs.locale("zh-hk");
 let firstCulture;
 let newCultureId;
 let config;
-const group = 'group';
+const group = "group";
 describe(endpointUrl, () => {
   beforeAll(async () => {
     await CultureModel.deleteMany({});
     await CultureModel.create(allCulture);
     // Login
     const res = await request(app)
-      .post('/login')
+      .post("/login")
       .send({ email: newUser.email, password: newUser.password });
     config = {
       Authorization: `Bearer ${res.body.token}`,
@@ -80,8 +80,8 @@ describe(endpointUrl, () => {
 
     expect(response.statusCode).toBe(201);
     expect(response.body.caseNo).toBe(newCulture.caseNo);
-    expect(dayjs(response.body.reportDate).format('YYYY-MM-DD')).toBe(
-      dayjs(newCulture.reportDate).format('YYYY-MM-DD')
+    expect(dayjs(response.body.reportDate).format("YYYY-MM-DD")).toBe(
+      dayjs(newCulture.reportDate).format("YYYY-MM-DD")
     );
     newCultureId = response.body._id;
   });
@@ -90,10 +90,10 @@ describe(endpointUrl, () => {
     const response = await request(app)
       .post(endpointUrl)
       .set(config)
-      .send({ ...newCulture, name: '' });
+      .send({ ...newCulture, name: "" });
     expect(response.statusCode).toBe(500);
     expect(response.body).toStrictEqual({
-      message: 'Culture validation failed: name: Path `name` is required.',
+      message: "Culture validation failed: name: Path `name` is required.",
     });
   });
 
@@ -109,7 +109,7 @@ describe(endpointUrl, () => {
     expect(res.body.reportDate).toBe(testData.reportDate);
   });
 
-  test('HTTP DELETE', async () => {
+  test("HTTP DELETE", async () => {
     const res = await request(app)
       .delete(endpointUrl + newCultureId)
       .set(config)
@@ -118,7 +118,7 @@ describe(endpointUrl, () => {
     expect(res.body.name).toBe(testData.name);
   });
 
-  test('HTTP DELETE 404', async () => {
+  test("HTTP DELETE 404", async () => {
     const res = await request(app)
       .delete(endpointUrl + nonExistingCultureId)
       .set(config)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1616751235733" clover="3.2.0">
-  <project timestamp="1616751235733" name="All files">
-    <metrics statements="222" coveredstatements="222" conditionals="18" coveredconditionals="18" methods="42" coveredmethods="42" elements="282" coveredelements="282" complexity="0" loc="222" ncloc="222" packages="7" files="26" classes="26"/>
+<coverage generated="1617171815174" clover="3.2.0">
+  <project timestamp="1617171815174" name="All files">
+    <metrics statements="226" coveredstatements="226" conditionals="18" coveredconditionals="18" methods="43" coveredmethods="43" elements="287" coveredelements="287" complexity="0" loc="226" ncloc="226" packages="7" files="26" classes="26"/>
     <package name="FYP_API">
       <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/Users/manmanbbg/Desktop/degree/FYP/project/FYP_API/app.js">
@@ -25,7 +25,7 @@
       </file>
     </package>
     <package name="FYP_API.controllers">
-      <metrics statements="52" coveredstatements="52" conditionals="10" coveredconditionals="10" methods="8" coveredmethods="8"/>
+      <metrics statements="56" coveredstatements="56" conditionals="10" coveredconditionals="10" methods="9" coveredmethods="9"/>
       <file name="Controller.js" path="/Users/manmanbbg/Desktop/degree/FYP/project/FYP_API/controllers/Controller.js">
         <metrics statements="28" coveredstatements="28" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
         <line num="1" count="10" type="stmt"/>
@@ -67,9 +67,13 @@
         <line num="29" count="6" type="stmt"/>
       </file>
       <file name="ListeningAidController.js" path="/Users/manmanbbg/Desktop/degree/FYP/project/FYP_API/controllers/ListeningAidController.js">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="6" type="stmt"/>
-        <line num="5" count="6" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="31" count="6" type="stmt"/>
       </file>
       <file name="LocationController.js" path="/Users/manmanbbg/Desktop/degree/FYP/project/FYP_API/controllers/LocationController.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -165,8 +169,8 @@
         <line num="1" count="6" type="stmt"/>
         <line num="2" count="6" type="stmt"/>
         <line num="4" count="6" type="stmt"/>
-        <line num="36" count="6" type="stmt"/>
-        <line num="38" count="6" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
+        <line num="43" count="6" type="stmt"/>
       </file>
       <file name="location.model.js" path="/Users/manmanbbg/Desktop/degree/FYP/project/FYP_API/models/location.model.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

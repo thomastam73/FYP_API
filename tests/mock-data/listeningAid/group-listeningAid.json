@@ -1,0 +1,40 @@
+[
+  {
+    "_id": "BTC",
+    "data": [
+      {
+        "name": "Kwun Tong",
+        "brand": "Ping Tin Shopping Centre Man Wah Restaurant (non-residential)",
+        "price": 321,
+        "mark": 7825,
+        "description": "asd"
+      },
+      {
+        "name": "Kwun Tong",
+        "brand": "Ping Tin Shopping Centre Man Wah Restaurant (non-residential)",
+        "price": 321,
+        "mark": 7825,
+        "description": "asd"
+      }
+    ]
+  },
+  {
+    "_id": "RIC",
+    "data": [
+      {
+        "name": "Kwun Tong",
+        "brand": "Ping Tin Shopping Centre Man Wah Restaurant (non-residential)",
+        "price": 321,
+        "mark": 7825,
+        "description": "asd"
+      },
+      {
+        "name": "Kwun Tong",
+        "brand": "Ping Tin Shopping Centre Man Wah Restaurant (non-residential)",
+        "price": 321,
+        "mark": 7825,
+        "description": "asd"
+      }
+    ]
+  }
+]

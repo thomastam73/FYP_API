@@ -1,24 +1,25 @@
-const request = require('supertest');
-const dayjs = require('dayjs');
-const mongoose = require('../../database/test.mongodb.connect');
-const app = require('../../app');
-const ListeningAidModel = require('../../models/listeningAid.model');
+const request = require("supertest");
+const dayjs = require("dayjs");
+const mongoose = require("../../database/test.mongodb.connect");
+const app = require("../../app");
+const ListeningAidModel = require("../../models/listeningAid.model");
 // mock data
-const newUser = require('../mock-data/user/new-user.json');
-const newListeningAid = require('../mock-data/listeningAid/new-listeningAid.json');
-const allListeningAids = require('../mock-data/listeningAid/all-listeningAid.json');
+const newUser = require("../mock-data/user/new-user.json");
+const newListeningAid = require("../mock-data/listeningAid/new-listeningAid.json");
+const allListeningAids = require("../mock-data/listeningAid/all-listeningAid.json");
 // testing detail
-const endpointUrl = '/listeningAids/';
-const nonExistingListeningAidId = '5fe313b9c8acc928ceaee2ba';
+const endpointUrl = "/listeningAids/";
+const nonExistingListeningAidId = "5fe313b9c8acc928ceaee2ba";
 const testData = {
-  name: 'Kwun Tong',
-  brand: 'Ping Tin Shopping Centre Man Wah Restaurant (non-residential)',
+  name: "Kwun Tong",
+  brand: "Ping Tin Shopping Centre Man Wah Restaurant (non-residential)",
   price: 1234,
   mark: 7825,
-  description: 'asd',
+  description: "asd",
+  type: "RIC",
 };
 
-dayjs.locale('zh-hk');
+dayjs.locale("zh-hk");
 let firstListeningAid;
 let newListeningAidId;
 let config;
@@ -29,7 +30,7 @@ describe(endpointUrl, () => {
     await ListeningAidModel.create(allListeningAids);
     // Login
     const res = await request(app)
-      .post('/login')
+      .post("/login")
       .send({ email: newUser.email, password: newUser.password });
     config = {
       Authorization: `Bearer ${res.body.token}`,
@@ -51,6 +52,7 @@ describe(endpointUrl, () => {
     expect(response.body[0].price).toBeDefined();
     expect(response.body[0].mark).toBeDefined();
     expect(response.body[0].description).toBeDefined();
+    expect(response.body[0].type).toBeDefined();
     [firstListeningAid] = response.body;
   });
 
@@ -81,6 +83,7 @@ describe(endpointUrl, () => {
     expect(response.body.price).toBe(newListeningAid.price);
     expect(response.body.mark).toBe(newListeningAid.mark);
     expect(response.body.description).toBe(newListeningAid.description);
+    expect(response.body.type).toBe(newListeningAid.type);
 
     newListeningAidId = response.body._id;
   });
@@ -89,10 +92,10 @@ describe(endpointUrl, () => {
     const response = await request(app)
       .post(endpointUrl)
       .set(config)
-      .send({ ...newListeningAid, name: '' });
+      .send({ ...newListeningAid, name: "" });
     expect(response.statusCode).toBe(500);
     expect(response.body).toStrictEqual({
-      message: 'ListeningAid validation failed: name: Path `name` is required.',
+      message: "ListeningAid validation failed: name: Path `name` is required.",
     });
   });
 
@@ -107,9 +110,10 @@ describe(endpointUrl, () => {
     expect(res.body.price).toBe(testData.price);
     expect(res.body.mark).toBe(testData.mark);
     expect(res.body.description).toBe(testData.description);
+    expect(res.body.type).toBe(testData.type);
   });
 
-  test('HTTP DELETE', async () => {
+  test("HTTP DELETE", async () => {
     const res = await request(app)
       .delete(endpointUrl + newListeningAidId)
       .set(config)
@@ -118,7 +122,7 @@ describe(endpointUrl, () => {
     expect(res.body.name).toBe(testData.name);
   });
 
-  test('HTTP DELETE 404', async () => {
+  test("HTTP DELETE 404", async () => {
     const res = await request(app)
       .delete(endpointUrl + nonExistingListeningAidId)
       .set(config)

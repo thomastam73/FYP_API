@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const ListeningAidSchema = new mongoose.Schema(
   {
@@ -28,11 +28,16 @@ const ListeningAidSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    type: {
+      type: String,
+      trim: true,
+      required: true,
+    },
   },
-  { collection: 'listeningAids' },
-  { versionKey: '_somethingElse' }
+  { collection: "listeningAids" },
+  { versionKey: "_somethingElse" }
 );
 
 ListeningAidSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('ListeningAid', ListeningAidSchema);
+module.exports = mongoose.model("ListeningAid", ListeningAidSchema);

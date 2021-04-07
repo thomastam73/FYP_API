@@ -1,34 +1,36 @@
-const request = require('supertest');
-const dayjs = require('dayjs');
-const mongoose = require('../../database/test.mongodb.connect');
-const app = require('../../app');
-const SignLanguageModel = require('../../models/signLanguage.model');
+const request = require("supertest");
+const dayjs = require("dayjs");
+const mongoose = require("../../database/test.mongodb.connect");
+const app = require("../../app");
+const SignLanguageModel = require("../../models/signLanguage.model");
 // mock data
-const newUser = require('../mock-data/user/new-user.json');
-const newSignLanguage = require('../mock-data/signLanguage/new-signLanguage.json');
-const allSignLanguage = require('../mock-data/signLanguage/all-signLanguage.json');
+const newUser = require("../mock-data/user/new-user.json");
+const newSignLanguage = require("../mock-data/signLanguage/new-signLanguage.json");
+const allSignLanguage = require("../mock-data/signLanguage/all-signLanguage.json");
 // testing detail
-const endpointUrl = '/signLanguages/';
-const nonExistingSignLanguageId = '5fe313b9c8acc928ceaee2ba';
+const endpointUrl = "/signLanguages/";
+const nonExistingSignLanguageId = "5fe313b9c8acc928ceaee2ba";
 const testData = {
-  name: 'Hand',
-  videoLink: 'video/hand.mp3',
-  description: 'The sign language of hand',
-  gesture: 'to left',
-  district: 'Hong Kong',
+  name: "Hand",
+  videoLink: "video/hand.mp3",
+  description: "The sign language of hand",
+  gesture: "to left",
+  district: "Hong Kong",
 };
 
-dayjs.locale('zh-hk');
+dayjs.locale("zh-hk");
 let firstSignLanguage;
 let newSignLanguageId;
 let config;
+const group = "group";
+
 describe(endpointUrl, () => {
   beforeAll(async () => {
     await SignLanguageModel.deleteMany({});
     await SignLanguageModel.create(allSignLanguage);
     // Login
     const res = await request(app)
-      .post('/login')
+      .post("/login")
       .send({ email: newUser.email, password: newUser.password });
     config = {
       Authorization: `Bearer ${res.body.token}`,
@@ -39,6 +41,14 @@ describe(endpointUrl, () => {
 
   afterAll(async () => {
     await mongoose.connection.close();
+  });
+
+  test(`GET ${endpointUrl}group`, async () => {
+    const response = await request(app).get(endpointUrl + group);
+    expect(response.statusCode).toBe(200);
+    expect(Array.isArray(response.body)).toBeTruthy();
+    expect(response.body[0]._id).toBeDefined();
+    expect(response.body[0].data).toBeDefined();
   });
 
   test(`GET ${endpointUrl}`, async () => {
@@ -92,10 +102,10 @@ describe(endpointUrl, () => {
     const response = await request(app)
       .post(endpointUrl)
       .set(config)
-      .send({ ...newSignLanguage, name: '' });
+      .send({ ...newSignLanguage, name: "" });
     expect(response.statusCode).toBe(500);
     expect(response.body).toStrictEqual({
-      message: 'SignLanguage validation failed: name: Path `name` is required.',
+      message: "SignLanguage validation failed: name: Path `name` is required.",
     });
   });
 
@@ -112,7 +122,7 @@ describe(endpointUrl, () => {
     expect(res.body.district).toBe(testData.district);
   });
 
-  test('HTTP DELETE', async () => {
+  test("HTTP DELETE", async () => {
     const res = await request(app)
       .delete(endpointUrl + newSignLanguageId)
       .set(config)
@@ -125,7 +135,7 @@ describe(endpointUrl, () => {
     expect(res.body.district).toBe(testData.district);
   });
 
-  test('HTTP DELETE 404', async () => {
+  test("HTTP DELETE 404", async () => {
     const res = await request(app)
       .delete(endpointUrl + nonExistingSignLanguageId)
       .set(config)

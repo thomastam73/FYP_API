@@ -1,0 +1,36 @@
+[
+  {
+    "_id": "Hong Kong Island",
+    "data": [
+      {
+        "buildingName": "Help deaf and dumb people",
+        "address": "tuem mun",
+        "phone": 30246288,
+        "description": "Professional of help deaf and dumb people"
+      },
+      {
+        "buildingName": "Help deaf and dumb people",
+        "address": "tuem mun",
+        "phone": 30246288,
+        "description": "Professional of help deaf and dumb people"
+      }
+    ]
+  },
+  {
+    "_id": "New Territories",
+    "data": [
+      {
+        "buildingName": "Help deaf and dumb people",
+        "address": "tuem mun",
+        "phone": 30246288,
+        "description": "Professional of help deaf and dumb people"
+      },
+      {
+        "buildingName": "Help deaf and dumb people",
+        "address": "tuem mun",
+        "phone": 30246288,
+        "description": "Professional of help deaf and dumb people"
+      }
+    ]
+  }
+]

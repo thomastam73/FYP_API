@@ -105,6 +105,7 @@ describe("ListeningAidController.getListeningAidGroup", () => {
       },
     ]);
   });
+
   it("should return response with status 200 and group Culturea", async () => {
     ListeningAidModel.aggregate.mockReturnValue(groupListeningAid);
     await listeningAidController.getListeningAidGroup(req, res, next);

@@ -6,6 +6,7 @@ const locationController = new LocationController(LocationModel);
 
 const newLocation = require("../mock-data/location/new-location.json");
 const allLocation = require("../mock-data/location/all-location.json");
+const groupLocation = require("../mock-data/location/group-location.json");
 
 jest.mock("../../models/location.model");
 
@@ -76,6 +77,52 @@ describe("listeningAidController.getEntityById", () => {
     expect(res._isEndCalled()).toBeTruthy();
   });
 });
+
+/*
+ * Get Listening Aid group
+ */
+describe("LocationController.getLocationGroup", () => {
+  it("should have a getTodos function", () => {
+    expect(typeof locationController.getLocationGroup).toBe("function");
+  });
+
+  it("should call Location.aggregate([{...}])", async () => {
+    await locationController.getLocationGroup(req, res, next);
+    expect(LocationModel.aggregate).toHaveBeenCalledWith([
+      {
+        $group: {
+          _id: "$district",
+          data: {
+            $push: {
+              _id: "$_id",
+              buildingName: "$buildingName",
+              address: "$address",
+              phone: "$phone",
+              description: "$description",
+            },
+          },
+        },
+      },
+    ]);
+  });
+
+  it("should return response with status 200 and group Culturea", async () => {
+    LocationModel.aggregate.mockReturnValue(groupLocation);
+    await locationController.getLocationGroup(req, res, next);
+    expect(res.statusCode).toBe(200);
+    expect(res._isEndCalled()).toBeTruthy();
+    expect(res._getJSONData()).toStrictEqual(groupLocation);
+  });
+
+  it("should handle errors in getCultureGroup", async () => {
+    const errorMessage = { message: "Error finding" };
+    const rejectedPromise = Promise.reject(errorMessage);
+    LocationModel.aggregate.mockReturnValue(rejectedPromise);
+    await locationController.getLocationGroup(req, res, next);
+    expect(next).toHaveBeenCalledWith(errorMessage);
+  });
+});
+
 /*
  * Create Listening Aid
  */

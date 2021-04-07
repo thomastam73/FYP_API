@@ -22,6 +22,8 @@ dayjs.locale("zh-hk");
 let firstLocation;
 let newLocationId;
 let config;
+const group = "group";
+
 describe(endpointUrl, () => {
   beforeAll(async () => {
     await LocationModel.deleteMany({});
@@ -39,6 +41,14 @@ describe(endpointUrl, () => {
 
   afterAll(async () => {
     await mongoose.connection.close();
+  });
+
+  test(`GET ${endpointUrl}group`, async () => {
+    const response = await request(app).get(endpointUrl + group);
+    expect(response.statusCode).toBe(200);
+    expect(Array.isArray(response.body)).toBeTruthy();
+    expect(response.body[0]._id).toBeDefined();
+    expect(response.body[0].data).toBeDefined();
   });
 
   test(`GET ${endpointUrl}`, async () => {

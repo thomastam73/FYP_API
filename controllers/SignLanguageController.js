@@ -1,4 +1,4 @@
-const Controller = require('./Controller');
+const Controller = require("./Controller");
 
 class SignLanguageController extends Controller {}
 

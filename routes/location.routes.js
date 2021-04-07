@@ -8,6 +8,9 @@ const locationController = new LocationController(LocationModel);
 router.get("/", (req, res, next) =>
   locationController.getAllEntities(req, res, next)
 );
+router.get("/group", (req, res, next) =>
+  locationController.getLocationGroup(req, res, next)
+);
 router.get("/:id", (req, res, next) =>
   locationController.getEntityById(req, res, next)
 );

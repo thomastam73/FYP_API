@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const SignLanguageSchema = new mongoose.Schema(
   {
@@ -28,11 +28,16 @@ const SignLanguageSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    imgURL: {
+      type: String,
+      trim: true,
+      required: true,
+    },
   },
-  { collection: 'signLanguages' },
-  { versionKey: '_somethingElse' }
+  { collection: "signLanguages" },
+  { versionKey: "_somethingElse" }
 );
 
 SignLanguageSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('SignLanguage', SignLanguageSchema);
+module.exports = mongoose.model("SignLanguage", SignLanguageSchema);

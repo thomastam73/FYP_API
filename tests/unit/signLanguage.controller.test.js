@@ -98,6 +98,7 @@ describe("LocationController.getLocationGroup", () => {
               videoLink: "$videoLink",
               description: "$description",
               gesture: "$gesture",
+              imgURL: "$imgURL",
             },
           },
         },

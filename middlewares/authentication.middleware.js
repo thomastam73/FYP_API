@@ -12,7 +12,7 @@ const authentication = (req, res, next) => {
     return res.status(403).json({ errors: "No token found" });
   }
 
-  if (req.headers.status != 1) {
+  if (body("status") != 1) {
     return res.status(403).json({ errors: "Is not admin!" });
   }
 

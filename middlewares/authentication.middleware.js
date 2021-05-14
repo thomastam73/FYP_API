@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { body } = require("express-validator");
 
 const authentication = (req, res, next) => {
   let token;

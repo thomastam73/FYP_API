@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Auth Route
 app.use("/login", require("./routes/auth.routes"));
-// Routes
 app.use("/register", require("./routes/register.routes"));
+// Routes
 app.use("/listeningAids", require("./routes/listeningAid.routes"));
 app.use("/users", require("./routes/user.routes"));
 app.use("/cultures", require("./routes/culture.routes"));

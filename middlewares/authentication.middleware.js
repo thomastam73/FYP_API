@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { body } = require("express-validator");
 
 const authentication = (req, res, next) => {
   let token;
@@ -11,10 +10,6 @@ const authentication = (req, res, next) => {
     [, token] = req.headers.authorization.split("Bearer ");
   } else {
     return res.status(403).json({ errors: "No token found" });
-  }
-
-  if (body("status") != 1) {
-    return res.status(403).json({ errors: "Is not admin!" });
   }
 
   //   JWT token validation
